@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader>gl", function()
     vim.cmd.Git("pull")
 end)
 
-vim.keymap.set("n", "<leader>gb", function()
+vim.keymap.set("n", "<leader>gbl", function()
     vim.cmd.Git("blame")
 end)
 
@@ -21,3 +21,9 @@ vim.keymap.set("n", "<leader>gd", function()
 end)
 
 vim.keymap.set("n", "<leader>go", ":Git push -u origin ", opts)
+
+
+vim.keymap.set("n", "<leader>gb", ":Git checkout -b ", opts)
+
+
+vim.keymap.set("n", "<leader>gf", function() vim.cmf.Git("fetch") end)
