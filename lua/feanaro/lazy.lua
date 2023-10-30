@@ -1,37 +1,44 @@
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd("packer.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require("packer").startup(function(use)
-    -- Packer can manage itself
-    use("wbthomason/packer.nvim")
-
-    use({
+local plugins = {
+    {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
         -- or                            , branch = '0.1.x',
-        requires = { { "nvim-lua/plenary.nvim" } },
-    })
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+    },
 
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    { "catppuccin/nvim",                        name = "catppuccin" },
 
-    use({
+    {
         "nvim-treesitter/nvim-treesitter",
 
-        run = function()
+        build = function()
             local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
         end,
-    })
+    },
 
-    use("nvim-treesitter/playground")
-    use("theprimeagen/harpoon")
-    use("mbbill/undotree")
-    use("tpope/vim-fugitive")
+    "nvim-treesitter/playground",
+    "theprimeagen/harpoon",
+    "mbbill/undotree",
+    "tpope/vim-fugitive",
 
-    use({
+    {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
-        requires = {
+        dependencies = {
             -- LSP Support
             { "neovim/nvim-lspconfig" },
             { "williamboman/mason.nvim" },
@@ -49,21 +56,21 @@ return require("packer").startup(function(use)
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
         },
-    })
+    },
 
-    use({
+    {
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup({
                 icons = false,
                 -- your configuration comes here
-                -- or leave it empty to use the default settings
+                -- or leave it empty to  the default settings
                 -- refer to the configuration section below
             })
         end,
-    })
+    },
 
-    use({
+    {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
@@ -110,39 +117,39 @@ return require("packer").startup(function(use)
                 },
             })
         end,
-    })
+    },
 
-    use("ThePrimeagen/vim-be-good")
-    use("eandrju/cellular-automaton.nvim")
+    "ThePrimeagen/vim-be-good",
+    "eandrju/cellular-automaton.nvim",
 
-    use("jose-elias-alvarez/null-ls.nvim") -- Useful for formatting
+    "jose-elias-alvarez/null-ls.nvim", -- Useful for formatting
 
-    use("christoomey/vim-tmux-navigator")  -- tmux & split window navigation
+    "christoomey/vim-tmux-navigator",  -- tmux & split window navigation
 
     -- auto closing
-    use("windwp/nvim-autopairs")       -- autoclose parens, brackets, quotes, etc...
+    "windwp/nvim-autopairs",       -- autoclose parens, brackets, quotes, etc...
 
-    use("norcalli/nvim-colorizer.lua") -- colorize hex codes, etc...
+    "norcalli/nvim-colorizer.lua", -- colorize hex codes, etc...
 
     -- Add context at the top of the buffer
-    use("nvim-treesitter/nvim-treesitter-context")
+    "nvim-treesitter/nvim-treesitter-context",
 
     -- Telescope plugins
-    use({
+    {
         "nvim-telescope/telescope-fzf-native.nvim",
-        run = "make",
-    })
+        build = "make",
+    },
 
-    use {
+    {
         "AckslD/nvim-neoclip.lua",
-        requires = {
+        dependencies = {
             'nvim-telescope/telescope.nvim',
         },
-    }
+    },
 
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
+    { 'nvim-telescope/telescope-ui-select.nvim' },
 
-    use({
+    {
         "aaronhallaert/advanced-git-search.nvim",
         config = function()
             -- optional: setup telescope before loading the extension
@@ -157,14 +164,12 @@ return require("packer").startup(function(use)
 
             require("telescope").load_extension("advanced_git_search")
         end,
-        requires = {
+        dependencies = {
             -- Insert Dependencies here
         },
-    })
+    },
 
-    use {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-    }
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
+}
 
-    use 'lervag/vimtex'
-end)
+require("lazy").setup(plugins, {})

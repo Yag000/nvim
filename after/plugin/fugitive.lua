@@ -23,7 +23,7 @@ end)
 vim.keymap.set("n", "<leader>go", ":Git push -u origin ", opts)
 
 
-vim.keymap.set("n", "<leader>gb", ":Git checkout -b ", opts)
+vim.keymap.set("n", "<leader>gb", ":Git switch", opts)
 
 
 vim.keymap.set("n", "<leader>gf", function() vim.cmf.Git("fetch") end)
