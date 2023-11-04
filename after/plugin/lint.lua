@@ -6,9 +6,6 @@ commitlint.args = {
 }
 
 lint.linters_by_ft = {
-	c = { "cppcheck" },
-	cpp = { "cppcheck" },
-
 	python = { "pylint" },
 
 	gitcommit = { "commitlint" },

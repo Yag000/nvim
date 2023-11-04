@@ -2,9 +2,9 @@ local conform = require("conform")
 
 conform.setup({
 	formatters_by_ft = {
-		javascript = { "prettier" },
-		yaml = { "prettier" },
-		json = { "prettier" },
+		javascript = { "prettierd" },
+		yaml = { "prettierd" },
+		json = { "prettierd" },
 
 		lua = { "stylua" },
 
@@ -16,16 +16,19 @@ conform.setup({
 
 		ocaml = { "ocamlformat" },
 
-		rust = { "rustfmt" },
-
 		java = { "google-java-format" },
 
-		cpp = { "clang-format" },
+		cpp = { "clang_format" },
 
-		c = { "clang-format" },
+		c = { "clang_format" },
 
 		go = { "gofmt" },
 	},
 })
 
-vim.keymap.set({ "n", "v" }, "<leader>f", conform.format)
+vim.keymap.set({ "n", "v" }, "<leader>f", function()
+	if conform.format() then
+	else
+		vim.lsp.buf.format()
+	end
+end)

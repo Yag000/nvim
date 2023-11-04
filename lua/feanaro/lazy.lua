@@ -17,7 +17,6 @@ local plugins = {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.1",
-		-- or                            , branch = '0.1.x',
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 	},
 
@@ -65,9 +64,6 @@ local plugins = {
 		config = function()
 			require("trouble").setup({
 				icons = false,
-				-- your configuration comes here
-				-- or leave it empty to  the default settings
-				-- refer to the configuration section below
 			})
 		end,
 	},
@@ -135,51 +131,26 @@ local plugins = {
 	"nvim-treesitter/nvim-treesitter-context",
 
 	-- Telescope plugins
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
-	{
-		"AckslD/nvim-neoclip.lua",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
-	},
+	{ "AckslD/nvim-neoclip.lua", dependencies = { "nvim-telescope/telescope.nvim" } },
 
 	{ "nvim-telescope/telescope-ui-select.nvim" },
 
 	{
 		"aaronhallaert/advanced-git-search.nvim",
 		config = function()
-			-- optional: setup telescope before loading the extension
-			require("telescope").setup({
-				-- move this to the place where you call the telescope setup function
-				extensions = {
-					advanced_git_search = {
-						-- Insert Config here
-					},
-				},
-			})
-
 			require("telescope").load_extension("advanced_git_search")
 		end,
-		dependencies = {
-			-- Insert Dependencies here
-		},
 	},
 
 	{ "nvim-telescope/telescope-live-grep-args.nvim" },
 
-	{
-		"stevearc/conform.nvim",
-		event = { "BufRead", "BufNewFile" },
-	},
+	{ "stevearc/conform.nvim", event = { "BufRead", "BufNewFile" } },
 
-	{ "mfussenegger/nvim-lint", event = {
-		"BufReadPre",
-		"BufNewFile",
-	} },
+	{ "mfussenegger/nvim-lint", event = { "BufReadPre", "BufNewFile" } },
+
+	{ "folke/which-key.nvim" },
 }
 
 require("lazy").setup(plugins, {})

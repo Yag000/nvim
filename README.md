@@ -5,8 +5,7 @@ This repository contains my personal config files. For an optimal experience, I 
 
 ## Installation
 
-For now the installation is manual and I use the packer plugin manager.
-As packer is no longer maintained, I will probably switch to another one soon.
+For now the installation is manual and I use the lazyvim plugin manager.
 
 ## Dependencies
 
