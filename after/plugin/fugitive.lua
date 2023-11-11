@@ -29,8 +29,4 @@ vim.keymap.set("n", "<leader>gf", function()
 	vim.cmd.Git("fetch")
 end)
 
-vim.keymap.set("n", "<leader>gca", function()
-	vim.cmd.Git("commit --amend")
-end)
-
 vim.keymap.set("n", "<leader>grh", ":Git rebase -i HEAD~", opts)
