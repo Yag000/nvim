@@ -30,3 +30,7 @@ vim.keymap.set("n", "<leader>gf", function()
 end)
 
 vim.keymap.set("n", "<leader>grh", ":Git rebase -i HEAD~", opts)
+
+vim.keymap.set("n", "<leader>gmt", function()
+	vim.cmd.Git("mergetool")
+end)
