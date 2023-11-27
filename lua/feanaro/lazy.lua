@@ -16,7 +16,7 @@ vim.g.mapleader = " "
 local plugins = {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.4",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 	},
 
@@ -151,6 +151,10 @@ local plugins = {
 	{ "mfussenegger/nvim-lint", event = { "BufReadPre", "BufNewFile" } },
 
 	{ "folke/which-key.nvim" },
+
+	-- Coq
+	{ "whonore/Coqtail" },
+	{ "tomtomjhj/coq-lsp.nvim" },
 }
 
 require("lazy").setup(plugins, {})
