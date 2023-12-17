@@ -155,6 +155,13 @@ local plugins = {
 	-- Coq
 	{ "whonore/Coqtail" },
 	{ "tomtomjhj/coq-lsp.nvim" },
+
+	{
+		"lervag/vimtex",
+		ft = {
+			"tex",
+		},
+	},
 }
 
 require("lazy").setup(plugins, {})

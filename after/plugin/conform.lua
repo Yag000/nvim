@@ -23,6 +23,8 @@ conform.setup({
 		c = { "clang_format" },
 
 		go = { "gofmt" },
+
+		tex = { "latexindent" },
 	},
 })
 
