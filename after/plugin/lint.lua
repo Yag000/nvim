@@ -13,6 +13,8 @@ lint.linters_by_ft = {
 	gitcommit = { "commitlint" },
 
 	sh = { "shellcheck" },
+
+    tex = { "chktex" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", {
