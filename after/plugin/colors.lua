@@ -42,9 +42,24 @@ require("catppuccin").setup({
 	},
 })
 
+local bg_color = "#303446"
+
+vim.keymap.set({ "n", "v" }, "<leader>tt", function()
+	if vim.api.nvim_get_hl(0, { name = "Normal" }).bg == nil then
+		vim.api.nvim_set_hl(0, "Normal", { bg = bg_color })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg_color })
+	else
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	end
+end)
+
 function ColorMyPencils(color)
 	color = color or "catppuccin"
 	vim.cmd.colorscheme(color)
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 ColorMyPencils()
