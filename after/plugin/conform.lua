@@ -2,7 +2,6 @@ local conform = require("conform")
 
 conform.setup({
 	formatters_by_ft = {
-		javascript = { "prettierd" },
 		yaml = { "prettierd" },
 		json = { "prettierd" },
 
@@ -15,8 +14,6 @@ conform.setup({
 		bash = { "beautysh" },
 
 		ocaml = { "ocamlformat" },
-
-		java = { "google-java-format" },
 
 		cpp = { "clang_format" },
 
