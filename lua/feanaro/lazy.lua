@@ -148,6 +148,8 @@ local plugins = {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+
+	{ "wakatime/vim-wakatime", lazy = false },
 }
 
 require("lazy").setup(plugins, {})
