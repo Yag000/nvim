@@ -149,8 +149,6 @@ local plugins = {
 		end,
 		ft = { "markdown" },
 	},
-
-	{ "wakatime/vim-wakatime", lazy = false },
 }
 
 require("lazy").setup(plugins, {})
