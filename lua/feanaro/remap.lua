@@ -34,3 +34,17 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Open tmux sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+local zen_lsp_active = false
+
+vim.keymap.set("n", "<leader>z", function()
+  if zen_lsp_active then
+    vim.cmd("LspRestart")
+    vim.cmd("ZenMode")
+  else
+    vim.cmd("LspStop")
+    vim.cmd("ZenMode")
+  end
+  zen_lsp_active = not zen_lsp_active
+end, { desc = "Toggle ZenMode and LSP" })
+
